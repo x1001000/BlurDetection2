@@ -4,12 +4,12 @@ import cv2
 import numpy
 
 
-def fix_image_size(image: numpy.array, expected_pixels: float = 2E6):
+def fix_image_size(image: numpy.array, expected_pixels: float = 1280*480): # original 2E6
     ratio = expected_pixels / (image.shape[0] * image.shape[1])
     return cv2.resize(image, (0, 0), fx=ratio, fy=ratio)
 
 
-def estimate_blur(image: numpy.array, threshold: int = 100):
+def estimate_blur(image: numpy.array, threshold: int = 250):
     if image.ndim == 3:
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
